@@ -7,6 +7,7 @@ import { logoutRouter } from './routes/logout'
 import { registerRouter } from './routes/register'
 
 import { errorHandler } from './middlewares/error-handler'
+import { NotFoundError } from './errors/not-found-error'
 
 const app = express()
 
@@ -16,6 +17,10 @@ app.use(userRouter)
 app.use(loginRouter)
 app.use(logoutRouter)
 app.use(registerRouter)
+
+app.all('*', () => {
+  throw new NotFoundError()
+})
 
 app.use(errorHandler)
 
