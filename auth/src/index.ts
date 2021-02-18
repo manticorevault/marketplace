@@ -28,18 +28,18 @@ app.use(errorHandler)
 
 const startUp = async () => {
   try {
-    await mongoose.connect('mongodb://auth-mongo-srv:27107/auth', {
+    await mongoose.connect('mongodb://auth-mongo-srv:27017/auth', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
     })
-    console.log('Connected to MongoDB')
+    console.log('Connection to MongoDB is working! ')
   } catch (err) {
     console.error(err)
   }
 
   app.listen(3000, () => {
-    console.log('Listening to port 3000! Skaffold and MongoDB working!')
+    console.log('Listening to port 3000! Skaffold working!')
   })
 }
 
