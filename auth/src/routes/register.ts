@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express'
 import { body, validationResult } from 'express-validator'
 import { RequestValidationError } from '../errors/request-validation-error'
+import { BadRequestError } from '../errors/bad-request-error'
 import { User } from '../models/user'
 
 const router = express.Router()
@@ -28,8 +29,7 @@ router.post(
     const existingUser = await User.findOne({ email })
 
     if (existingUser) {
-      console.log('This e-mail was already taken!')
-      return res.send({})
+      throw new BadRequestError('Uh-oh. This e-mail was already taken!')
     }
 
     const user = User.build({ email, password })
