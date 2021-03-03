@@ -15,8 +15,8 @@ router.post(
       .withMessage('Your should register with a valid e-mail!'),
     body('password')
       .trim()
-      .isLength({ min: 6, max: 25 })
-      .withMessage('Password must be between 6 and 25 characters long'),
+      .isLength({ min: 8, max: 25 })
+      .withMessage('Password must be between 8 and 25 characters long'),
   ],
   async (req: Request, res: Response) => {
     const error = validationResult(req)
